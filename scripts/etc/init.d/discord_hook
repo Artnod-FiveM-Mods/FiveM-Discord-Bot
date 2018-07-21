@@ -1,0 +1,57 @@
+#!/bin/sh -e
+### BEGIN INIT INFO
+# Provides:          7dtd-hook
+# Required-Start:    $remote_fs
+# Required-Stop:     $remote_fs
+# Should-Start:      $named
+# Should-Stop:       $named
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: 7dtd Discord Bot
+# Description:       Status 7dtd with Discord Hook
+
+DAEMON="/usr/local/bin/sdtdbot/discord_hook.py"
+DAEMONUSER="root"
+daemon_NAME="discord_hook.py"
+
+PATH="/sbin:/bin:/usr/sbin:/usr/bin"
+
+test -x $DAEMON || exit 0
+
+. /lib/lsb/init-functions
+
+d_start () {
+        log_daemon_msg "Starting system $daemon_NAME Daemon"
+        start-stop-daemon --background --name $daemon_NAME --start --quiet --chuid $DAEMONUSER --exec $DAEMON
+        log_end_msg $?
+}
+
+d_stop () {
+        log_daemon_msg "Stopping system $daemon_NAME Daemon"
+        start-stop-daemon --name $daemon_NAME --stop --retry TERM/5/KILL/10 --quiet --name $daemon_NAME
+        log_end_msg $?
+
+}
+
+case "$1" in
+	start|stop)
+		d_${1}
+		;;
+	restart|reload|force-reload)
+		d_stop
+		d_start
+		;;
+	force-stop)
+		d_stop
+		kill $(ps -el | grep $daemon_NAME | awk '{print $4}') > /dev/null
+		;;
+	status)
+		status_of_proc "$daemon_NAME" "$DAEMON" "system-wide $daemon_NAME" && exit 0 || exit $?
+		;;
+	*)
+		echo "Usage: /etc/init.d/$daemon_NAME {start|stop|force-stop|restart|reload|force-reload|status}"
+		exit 1
+		;;
+
+esac
+exit 0
