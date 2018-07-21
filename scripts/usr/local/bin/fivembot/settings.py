@@ -23,7 +23,7 @@ WEBHOOK_CONF = {
     }
 }
 
-SDTD_CONF = {
+FIVEM_CONF = {
     'server_ip' : '127.0.0.1',
     'server_port' : 30120,
 }
