@@ -1,2 +1,44 @@
 # FiveM-Discord-Bot
-Simple Discord Bot/Webhook for FiveM Server
+Simple Discord Bot/Webhook for fivem linux server.  
+Features:
+  * Start/Stop fivem server. ( Discord Bot )
+  * Send message when server state changed. ( Discord WebHook )
+
+## Install
+```
+wget https://raw.githubusercontent.com/Artnod-FiveM-Mods/FiveM-Discord-Bot/master/bootstrap/bootstrap.sh
+chmod +x bootstrap.sh
+./bootstrap.sh -i
+```  
+
+## Config
+Edit `/usr/local/bin/fivembot/settings.py` with your settings.  
+
+### Bot Config
+```
+BOT_CONF = {
+    'bot_token' : '<token>',
+    'bot_channel' : '<channel>',
+    'bot_admin_list' : ('<user>',),
+}
+```
+Replace **\<token>** by bot token  
+Replace **\<channel>** by a channel using by bot  
+Replace **\<user>** by id from allowed users. Can add many users `('<user_1_ID>', '<user_2_ID>')`  
+
+### Hook Config  
+```
+WEBHOOK_CONF = {
+    'webhook_url' : '<webhook_url>',
+}
+```
+Replace **\<webhook_url>** by webhook url  
+
+### Fivem Config  
+```
+FIVEM_CONF = {
+    'server_ip' : '<@IP or hostname>',
+    'server_port' : 30120,
+}
+```
+Replace **\<@IP or hostname>** by fivem server public IP address or hostname (Ex: **8.8.8.8** or **gta.domain.tld**)  
