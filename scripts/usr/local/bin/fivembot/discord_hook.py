@@ -9,6 +9,8 @@ import os, time, logging, logging.handlers
 from lxml import etree
 from Webhook.Webhook import CheckPorthook
 from settings import WEBHOOK_CONF, FIVEM_CONF, LOG_CONF
+from json import load
+from urllib2 import urlopen
 
 # Set up a specific logger with our desired output level
 my_logger = logging.getLogger('discord_hook')
@@ -34,7 +36,8 @@ my_logger.addHandler(chandler)
 if __name__ == '__main__':
 	my_logger.info('Start Discord Hook')
 	instances = []
-	instances.append(CheckPorthook(FIVEM_CONF['server_ip'], FIVEM_CONF['server_port'], 'servername', WEBHOOK_CONF['webhook_url']))
+	my_ip = load(urlopen('http://jsonip.com'))['ip']
+	instances.append(CheckPorthook(my_ip, FIVEM_CONF['server_port'], FIVEM_CONF['server_name'], WEBHOOK_CONF['webhook_url']))
 	while True:
 		for instance in instances:
 			instance.process()
