@@ -85,12 +85,12 @@ checkSetupDeps() {
 installBotScripts() {
 	echo -e "Downloading and installing bot scripts"
 	echo "  - Download scripts"
-	wget -nv -q --show-progress https://github.com/Artnod-FiveM-Mods/FiveM-Discord-Bot/archive/master.zip -O /tmp/DiscordBot.zip
+	wget -nv -q --show-progress https://github.com/Artnod-FiveM-Mods/FiveM-Discord-Bot/archive/master.zip -O /root/DiscordBot.zip
 
 	echo "  - Extract scripts"
 	TMPPATH=`mktemp -d`
-	unzip -q /tmp/DiscordBot.zip -d $TMPPATH
-	cp -R $TMPPATH/7dtd_discordBot-master/scripts/* /
+	unzip -q /root/DiscordBot.zip -d /root/
+	cp -R /root/7dtd_discordBot-master/scripts/* /
 
 	chown root:root -R /usr/local/bin/fivembot
 	chmod 775 -R /usr/local/bin/fivembot
@@ -99,8 +99,8 @@ installBotScripts() {
 	chmod 755 /etc/init.d/discord_bot	
 	chmod 755 /etc/init.d/discord_hook
 
-	rm -R $TMPPATH
-	rm /tmp/DiscordBot.zip
+	rm -R /root/7dtd_discordBot-master
+	rm /root/DiscordBot.zip
 
 	echo "  - Enable deamon"
 	update-rc.d discord_bot defaults
