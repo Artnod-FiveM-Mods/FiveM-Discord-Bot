@@ -138,7 +138,7 @@ if [ -z $1 ]; then
 	showHelp
 	exit 0
 fi
-while getopts "hcoi" opt; do
+while getopts "hi" opt; do
 	case "$opt" in
 		h)
 			showHelp
