@@ -37,8 +37,8 @@ Replace **\<webhook_url>** by webhook url
 ### Fivem Config  
 ```
 FIVEM_CONF = {
-    'server_ip' : '<@IP or hostname>',
+    'server_name' : '<server name>',
     'server_port' : 30120,
 }
 ```
-Replace **\<@IP or hostname>** by fivem server public IP address or hostname (Ex: **8.8.8.8** or **gta.domain.tld**)  
+Replace **\<server name>** by your server name  
