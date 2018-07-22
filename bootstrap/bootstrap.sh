@@ -29,7 +29,7 @@ intro() {
 	echo
 	echo "This will install a fivem Discord Bot according to the information"
 	echo
-	read -p "Press enter to continue"
+	# read -p "Press enter to continue"
 	echo -e "\n=============================================================\n"
 }
 
