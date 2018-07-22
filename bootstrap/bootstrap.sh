@@ -90,7 +90,7 @@ installBotScripts() {
 	echo "  - Extract scripts"
 	TMPPATH=`mktemp -d`
 	unzip -q /root/DiscordBot.zip -d /root/
-	cp -R /root/7dtd_discordBot-master/scripts/* /
+	cp -R /root/FiveM-Discord-Bot-master/scripts/* /
 
 	chown root:root -R /usr/local/bin/fivembot
 	chmod 775 -R /usr/local/bin/fivembot
@@ -99,7 +99,7 @@ installBotScripts() {
 	chmod 755 /etc/init.d/discord_bot	
 	chmod 755 /etc/init.d/discord_hook
 
-	rm -R /root/7dtd_discordBot-master
+	rm -R /root/FiveM-Discord-Bot-master
 	rm /root/DiscordBot.zip
 
 	echo "  - Enable deamon"
