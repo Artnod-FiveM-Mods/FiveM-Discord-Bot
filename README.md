@@ -1,9 +1,24 @@
 # FiveM-Discord-Bot
 Simple Discord Bot/Webhook for fivem linux server.  
-Features:
-  * Start/Stop fivem server. ( Discord Bot )
-  * Update specific resource. ( Discord Bot )
-  * Send message when server state changed. ( Discord WebHook )
+
+**Features WebHook:**
+```
+Send message when server state changed.
+```
+
+**Features Bot:**
+```
+A simple Bot to start/stop/update fivem server
+
+​No Category:
+  update     Update a specific resource
+  help   Shows this message.
+  stop       Stop a specific server
+  start      Start a specific server
+
+Type /help command for more info on a command.
+You can also type /help category for more info on a category.
+```
 
 ## Install
 ```
