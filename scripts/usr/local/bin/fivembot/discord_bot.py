@@ -42,6 +42,7 @@ async def on_ready():
     my_logger.debug(sys._getframe().f_code.co_name)
     print('Logged in as {} - {}'.format(bot.user.name, bot.user.id))
 
+# start command
 @bot.group(pass_context=True)
 async def start(ctx):
     """
@@ -53,18 +54,6 @@ async def start(ctx):
     if ctx.invoked_subcommand is None:
         await bot.say('Failed !')
         await bot.say('Try **/help start** !')
-
-@bot.group(pass_context=True)
-async def stop(ctx):
-    """
-    \tStop a specific server
-    
-    Usage: /stop <command>
-    """
-    my_logger.debug(sys._getframe().f_code.co_name)
-    if ctx.invoked_subcommand is None:
-        await bot.say('Failed !')
-        await bot.say('Try **/help stop** !')
 
 @start.command(pass_context=True)
 async def fivem(ctx):
@@ -96,6 +85,20 @@ async def fivem(ctx):
     else:
         my_logger.warn('{0.name} Bad channel'.format(member))
         await bot.say('**{0.name}** ! Bad channel!\r'.format(member))
+
+
+# stop command
+@bot.group(pass_context=True)
+async def stop(ctx):
+    """
+    \tStop a specific server
+    
+    Usage: /stop <command>
+    """
+    my_logger.debug(sys._getframe().f_code.co_name)
+    if ctx.invoked_subcommand is None:
+        await bot.say('Failed !')
+        await bot.say('Try **/help stop** !')
 
 @stop.command(pass_context=True)
 async def fivem(ctx):
@@ -129,6 +132,54 @@ async def fivem(ctx):
         my_logger.warn('{0.name} Bad channel'.format(member))
         await bot.say('**{0.name}** ! Bad channel!\r'.format(member))
 
+
+# update command
+@bot.group(pass_context=True)
+async def update(ctx):
+    """
+    \tUpdate a specific resource
+    
+    Usage: /update <command>
+    """
+    my_logger.debug(sys._getframe().f_code.co_name)
+    if ctx.invoked_subcommand is None:
+        await bot.say('Failed !')
+        await bot.say('Try **/help update** !')
+
+@update.command(pass_context=True)
+async def esx_races(ctx):
+    """
+    \tUpdate esx_races
+    
+    Usage: /update esx_races
+    """
+    my_logger.debug(sys._getframe().f_code.co_name)
+    channel = ctx.message.channel
+    member = ctx.message.author
+    if channel.id == BOT_CONF['bot_channel']:
+        if member.id in BOT_CONF['bot_admin_list']:
+            await bot.say('**{0.name}** try to update **esx_races**!\r'.format(member))
+            try:
+                my_logger.info('{0.name} try to update esx_races'.format(member))
+                p = Popen(["/root/fmm/bootstrap.sh", "-u"], stdout=PIPE)
+                toto = p.communicate()
+                if toto[0] != None:
+                    await bot.say(toto[0].decode('unicode_escape'))
+                else:
+                    await bot.say(toto[1].decode('unicode_escape'))
+            except:
+                my_logger.err('Command Failed')
+                await bot.say('Command Failed!')
+        else:
+            my_logger.warn('{0.name} Access Denied'.format(member))
+            await bot.say('**{0.name}** ! Access Denied!\r'.format(member))
+            
+    else:
+        my_logger.warn('{0.name} Bad channel'.format(member))
+        await bot.say('**{0.name}** ! Bad channel!\r'.format(member))
+
+		
+# main
 if __name__ == '__main__':
     my_logger.info('Start Discord Bot')
     bot.run(BOT_CONF['bot_token'])
