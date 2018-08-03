@@ -31,7 +31,7 @@ chmod +x bootstrap.sh
 Edit `/usr/local/bin/fivembot/settings.py` with your settings.  
 
 ### Bot Config
-```
+```python
 BOT_CONF = {
     'bot_token' : '<token>',
     'bot_channel' : '<channel>',
@@ -43,7 +43,7 @@ Replace **\<channel>** by a channel using by bot
 Replace **\<user>** by id from allowed users. Can add many users `('<user_1_ID>', '<user_2_ID>')`  
 
 ### Hook Config  
-```
+```python
 WEBHOOK_CONF = {
     'webhook_url' : '<webhook_url>',
 }
@@ -51,7 +51,7 @@ WEBHOOK_CONF = {
 Replace **\<webhook_url>** by webhook url  
 
 ### Fivem Config  
-```
+```python
 FIVEM_CONF = {
     'server_name' : '<server name>',
     'server_port' : 30120,
