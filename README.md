@@ -10,7 +10,7 @@ Send message when server state changed.
 ```
 A simple Bot to start/stop/update fivem server
 
-​No Category:
+​Categories:
   update     Update a specific resource
   help   Shows this message.
   stop       Stop a specific server
