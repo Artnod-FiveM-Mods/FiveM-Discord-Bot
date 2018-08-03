@@ -32,7 +32,7 @@ chandler.setFormatter(formatter)
 my_logger.addHandler(fhandler)
 my_logger.addHandler(chandler)
 
-bot = commands.Bot(command_prefix='/', description='A simple Bot to start/stop fivem server')
+bot = commands.Bot(command_prefix='/', description='A simple Bot to start/stop/update fivem server')
 
 @bot.event
 async def on_ready():
