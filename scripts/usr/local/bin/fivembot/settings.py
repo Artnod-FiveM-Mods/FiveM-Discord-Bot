@@ -25,6 +25,7 @@ WEBHOOK_CONF = {
 
 FIVEM_CONF = {
     'server_name' : '<serverName>',
+    'server_ip'   : '<IP>',
     'server_port' : 30120,
 }
 
