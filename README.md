@@ -26,7 +26,11 @@ wget https://raw.githubusercontent.com/Artnod-FiveM-Mods/FiveM-Discord-Bot/maste
 chmod +x bootstrap.sh
 ./bootstrap.sh -i
 ```  
-
+## Install Webhook (Windows only)
+```
+Need python3
+Need ``lxml`` python package ``pip install lxml``
+```  
 ## Config
 Edit `/usr/local/bin/fivembot/settings.py` with your settings.  
 
