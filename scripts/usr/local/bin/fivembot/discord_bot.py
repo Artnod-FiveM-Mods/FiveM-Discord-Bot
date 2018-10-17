@@ -161,7 +161,7 @@ async def esx_races(ctx):
             await bot.say('**{0.name}** try to update **esx_races**!\r'.format(member))
             try:
                 my_logger.info('{0.name} try to update esx_races'.format(member))
-                p = Popen(["/root/fmm/bootstrap.sh", "-u"], stdout=PIPE)
+                p = Popen(["/root/fmm/update.sh", "-r"], stdout=PIPE)
                 toto = p.communicate()
                 if toto[0] != None:
                     await bot.say(toto[0].decode('unicode_escape'))
@@ -178,7 +178,39 @@ async def esx_races(ctx):
         my_logger.warn('{0.name} Bad channel'.format(member))
         await bot.say('**{0.name}** ! Bad channel!\r'.format(member))
 
-		
+@update.command(pass_context=True)
+async def esx_brinks(ctx):
+    """
+    \tUpdate esx_brinks
+    
+    Usage: /update esx_brinks
+    """
+    my_logger.debug(sys._getframe().f_code.co_name)
+    channel = ctx.message.channel
+    member = ctx.message.author
+    if channel.id == BOT_CONF['bot_channel']:
+        if member.id in BOT_CONF['bot_admin_list']:
+            await bot.say('**{0.name}** try to update **esx_brinks**!\r'.format(member))
+            try:
+                my_logger.info('{0.name} try to update esx_brinks'.format(member))
+                p = Popen(["/root/fmm/update.sh", "-b"], stdout=PIPE)
+                toto = p.communicate()
+                if toto[0] != None:
+                    await bot.say(toto[0].decode('unicode_escape'))
+                else:
+                    await bot.say(toto[1].decode('unicode_escape'))
+            except:
+                my_logger.err('Command Failed')
+                await bot.say('Command Failed!')
+        else:
+            my_logger.warn('{0.name} Access Denied'.format(member))
+            await bot.say('**{0.name}** ! Access Denied!\r'.format(member))
+            
+    else:
+        my_logger.warn('{0.name} Bad channel'.format(member))
+        await bot.say('**{0.name}** ! Bad channel!\r'.format(member))
+
+
 # main
 if __name__ == '__main__':
     my_logger.info('Start Discord Bot')
